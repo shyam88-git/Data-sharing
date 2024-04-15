@@ -1,5 +1,4 @@
 import AuthLayout from "@/layout/AuthLayout";
-
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -14,7 +13,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MdArrowOutward } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { toast, useToast } from "@/components/ui/use-toast";
+import { AuthPayloadError } from "@/redux/features/auth/auth";
 
 const formSchema = z.object({
   username_or_phone: z.string(),
@@ -22,7 +24,12 @@ const formSchema = z.object({
 });
 
 type FormSchemaType = z.infer<typeof formSchema>;
+
 const Login = () => {
+  const navigate = useNavigate();
+  const [loginUser] = useLoginMutation();
+  const { toast } = useToast();
+
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,11 +37,24 @@ const Login = () => {
       password: "",
     },
   });
+
+  const onSubmit = async (values: FormSchemaType) => {
+    try {
+      await loginUser(values).unwrap();
+      toast({ description: "Login Successfully" });
+    } catch (err) {
+      const error = err as AuthPayloadError;
+      error?.data?.errors.forEach((el) => {
+        toast({ description: "Something went wrong" });
+      });
+    }
+  };
+
   return (
-    <AuthLayout title=" Login To NepGIS">
-      <div className=" px-16">
+    <AuthLayout title="Login To NepGIS">
+      <div className="px-16">
         <Form {...form}>
-          <form className="space-y-8">
+          <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name="username_or_phone"
@@ -54,7 +74,6 @@ const Login = () => {
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="password"
@@ -67,7 +86,7 @@ const Login = () => {
                     <Input
                       {...field}
                       type="password"
-                      className="bg-gray-50 border border-gray-300 w-72 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 w-72 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Password"
                     />
                   </FormControl>
@@ -75,13 +94,11 @@ const Login = () => {
                 </FormItem>
               )}
             />
-
             <Button
               type="submit"
               className="border border-slate-200 bg-slate-200 text-white rounded-full bg-transparent cursor-default hover:bg-slate-400 hover:text-white p-x px-6"
             >
-              Login
-              <MdArrowOutward />
+              Login <MdArrowOutward />
             </Button>
             <p>
               Don't have account ? <Link to="/signup">Register here</Link>

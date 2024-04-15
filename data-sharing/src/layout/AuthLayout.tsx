@@ -7,7 +7,7 @@ interface PropsI {
 
 const AuthLayout = ({ title, children }: PropsI) => {
   return (
-    <div className="  w-ful flex items-center justify-center ">
+    <div className="  w-ful flex items-center justify-center  my-4">
       <div className=" w-full flex items-center justify-center">
         <div className="relative bg-blue-950 text-white py-8 rounded-md">
           <FaArrowLeft
