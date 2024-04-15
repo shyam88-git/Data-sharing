@@ -15,8 +15,8 @@ import { Button } from "@/components/ui/button";
 import { MdArrowOutward } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
-import { toast, useToast } from "@/components/ui/use-toast";
 import { AuthPayloadError } from "@/redux/features/auth/auth";
+import { showToast } from "@/lib/Toast";
 
 const formSchema = z.object({
   username_or_phone: z.string(),
@@ -28,7 +28,6 @@ type FormSchemaType = z.infer<typeof formSchema>;
 const Login = () => {
   const navigate = useNavigate();
   const [loginUser] = useLoginMutation();
-  const { toast } = useToast();
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -40,13 +39,16 @@ const Login = () => {
 
   const onSubmit = async (values: FormSchemaType) => {
     try {
-      await loginUser(values).unwrap();
-      toast({ description: "Login Successfully" });
+      //@ts-ignore
+      await loginUser(values)
+        .unwrap()
+        .then((data) => {
+          showToast("login Successfully", {
+            type: "success",
+          });
+        });
     } catch (err) {
-      const error = err as AuthPayloadError;
-      error?.data?.errors.forEach((el) => {
-        toast({ description: "Something went wrong" });
-      });
+      showToast("Error in Login", { type: "error" });
     }
   };
 
