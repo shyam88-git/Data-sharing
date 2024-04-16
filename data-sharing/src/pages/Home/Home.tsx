@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ContactUs from "./ContactUs";
 import Service from "./Service";
 import Payment from "./Payment";
+import Partner from "./Partner";
 
 const Home = () => {
   return (
@@ -38,6 +39,7 @@ const Home = () => {
           <Service />
 
           <Payment />
+          <Partner />
           <ContactUs />
         </div>
       </div>
