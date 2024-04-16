@@ -27,6 +27,10 @@ module.exports = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        backgroundImage: {
+          'hero-pattern': "url('/hero-image.png')",
+          'footer-texture': "url('/img/footer-texture.png')",
+         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
