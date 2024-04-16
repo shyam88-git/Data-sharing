@@ -18,8 +18,8 @@ import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { showToast } from "@/lib/Toast";
 
 const formSchema = z.object({
-  username_or_phone: z.string(),
-  password: z.string(),
+  username_or_phone: z.string().min(2, "Minimum 2 character is required"),
+  password: z.string().min(2),
 });
 
 type FormSchemaType = z.infer<typeof formSchema>;

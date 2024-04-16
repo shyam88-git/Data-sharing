@@ -5,7 +5,7 @@ import ContactUs from "./ContactUs";
 const Home = () => {
   return (
     <>
-      <Menubar className="px-4 md:px-16 flex justify-end gap-4 md:gap-12 py-4 md:py-7 bg-blue-950">
+      <Menubar className="px-4 fixed w-full md:px-16 flex justify-end gap-4 md:gap-12 py-4 md:py-7 bg-blue-950">
         <MenubarMenu>
           <MenubarTrigger className="MenubarTrigger hover:bg-slate-100 hover:border-slate-100 cursor-pointer active:text-white focus:outline-white">
             <Link to="">Overview</Link>
