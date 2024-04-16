@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { MdArrowOutward } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
-import { AuthPayloadError } from "@/redux/features/auth/auth";
 import { showToast } from "@/lib/Toast";
 
 const formSchema = z.object({
@@ -42,10 +41,11 @@ const Login = () => {
       //@ts-ignore
       await loginUser(values)
         .unwrap()
-        .then((data) => {
+        .then(() => {
           showToast("login Successfully", {
             type: "success",
           });
+          navigate("/dashboard");
         });
     } catch (err) {
       showToast("Error in Login", { type: "error" });

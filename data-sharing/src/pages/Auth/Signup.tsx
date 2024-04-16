@@ -12,7 +12,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSignupMutation } from "@/redux/features/auth/authApi";
+import { showToast } from "@/lib/Toast";
+import { AuthPayloadError } from "@/redux/features/auth/auth";
 
 const formSchema = z.object({
   first_name: z.string(),
@@ -26,6 +29,8 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 const Signup = () => {
+  const navigate = useNavigate();
+  const [signUpUser] = useSignupMutation();
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
 
@@ -39,11 +44,26 @@ const Signup = () => {
       confirm_password: "",
     },
   });
+
+  const onSubmit = async (values: FormSchema) => {
+    await signUpUser(values)
+      .unwrap()
+      .then(() => {
+        showToast("User register successfully", { type: "success" });
+      })
+      .catch((err: AuthPayloadError) => {
+        err?.data?.errors.map((el) => {
+          showToast(el.message, {
+            type: "error",
+          });
+        });
+      });
+  };
   return (
     <AuthLayout title="Regiser To NepGIS">
       <div className="px-16">
         <Form {...form}>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
             <div className=" flex items-center gap-5">
               <FormField
                 control={form.control}
