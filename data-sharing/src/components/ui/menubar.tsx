@@ -42,7 +42,7 @@ const MenubarTrigger = React.forwardRef<
   <MenubarPrimitive.Trigger
     ref={ref}
     className={cn(
-      "text-white py-2 px-4 text-md rounded-md  hover:bg-slate-600   hover:text-black",
+      "text-white py-2 px-4  rounded-md  hover:bg-slate-600   hover:text-black",
       className
     )}
     {...props}
