@@ -126,7 +126,7 @@ const ContactUs = () => {
                       id="name"
                       autoComplete="given-name"
                       placeholder="Your name"
-                      className="mb-2 w-full rounded-md placeholder-black   bg-slate-300 text-white  outline-none border-b-2 border-slate-950 py-4 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+                      className="mb-2 w-full rounded-md placeholder-black   bg-slate-300 text-white  outline-none border-b-2 border-slate-950 py-4 pl-2 pr-4  dark:text-gray-300 sm:mb-0"
                       name="name"
                     />
                   </div>
@@ -140,7 +140,7 @@ const ContactUs = () => {
                       id="email"
                       autoComplete="email"
                       placeholder="Your email address"
-                      className="mb-2 w-full rounded-md placeholder-black   bg-slate-300 text-white  outline-none border-b-2 border-slate-950 py-4 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+                      className="mb-2 w-full  placeholder-black rounded-lg   bg-slate-300 text-white  outline-none border-b-2 border-black py-4 pl-2 pr-4  dark:text-gray-300 sm:mb-0"
                       name="email"
                     />
                   </div>
@@ -154,7 +154,7 @@ const ContactUs = () => {
                     id="textarea"
                     name="textarea"
                     placeholder="Write your message..."
-                    className="mb-2 w-full rounded-md placeholder-black   bg-slate-300 text-white  outline-none border-b-2 border-slate-950 py-4 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+                    className="mb-2 w-full rounded-md placeholder-black   bg-slate-300 text-white  outline-none border-b-2 border-slate-950 py-4 pl-2 pr-4  dark:text-gray-300 sm:mb-0"
                   ></textarea>
                 </div>
                 <div className="text-center mb-32">
