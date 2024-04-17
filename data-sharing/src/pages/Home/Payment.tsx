@@ -1,6 +1,9 @@
 const Payment = () => {
   return (
-    <section className="bg-white flex flex-col lg:flex-row  dark:bg-gray-900 rounded-md shadow-md">
+    <section
+      id="pricing"
+      className="bg-white flex flex-col lg:flex-row  dark:bg-gray-900 rounded-md shadow-md"
+    >
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12"></div>
         <div className="flex flex-col p-6 mx-auto max-w-lg text-center lg:text-left text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">

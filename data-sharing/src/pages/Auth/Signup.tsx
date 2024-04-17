@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSignupMutation } from "@/redux/features/auth/authApi";
 import { showToast } from "@/lib/Toast";
 import { AuthPayloadError } from "@/redux/features/auth/auth";
@@ -29,7 +29,6 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 const Signup = () => {
-  const navigate = useNavigate();
   const [signUpUser] = useSignupMutation();
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -218,7 +217,7 @@ const Signup = () => {
               Sign up
             </Button>
             <p>
-              Already have account? <Link to="/">Login</Link>
+              Already have account? <Link to="/login">Login</Link>
             </p>
           </form>
         </Form>

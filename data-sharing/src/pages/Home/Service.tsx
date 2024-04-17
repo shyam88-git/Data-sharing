@@ -80,7 +80,10 @@ const ActiveSlider = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center flex-col h-[900px] bg-slate-200">
+    <div
+      id="overview"
+      className="flex items-center justify-center flex-col h-[900px] bg-slate-200"
+    >
       <div className="text-center">
         <h2 className="text-3xl font-extrabold text-blue-900 sm:text-4xl">
           Our Services
