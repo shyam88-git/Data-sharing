@@ -1,6 +1,5 @@
 import partner1 from "/image1.jpg";
 import partner2 from "/image4.jpg";
-import partner3 from "/image6.jpeg";
 import partner4 from "/image5.webp";
 
 const Partner = () => {
@@ -33,13 +32,13 @@ const Partner = () => {
   ];
 
   return (
-    <div className="bg-gray-100 py-12">
+    <div className="bg-blue-900 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
             Our Partners and Clients
           </h2>
-          <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+          <p className="mt-3 max-w-2xl mx-auto text-xl text-white sm:mt-4">
             We take pride in our partnerships and the relationships we've built
             with our clients.
           </p>
